@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-900 text-white min-h-screen flex flex-col items-center p-4">
+  <!-- Task Input Section -->
+  <!-- Task Input Form Section -->
+
+  <form action="/create" method="POST" class="w-full max-w-2xl space-y-4">
+    <input type="text" name="title" placeholder="Title goes here.."
+      class="w-full p-3 bg-gray-800 rounded text-white placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+      required>
+    <textarea name="detail" placeholder="Write your task details here..."
+      class="w-full p-3 bg-gray-800 rounded text-white placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+      rows="3" required></textarea>
+    <input type="submit"
+      class="mx-auto block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded transition"
+      value="Create Task">
+  </form>
+
+  <!-- Task Cards Section -->
+  <div class="w-full max-w-4xl mt-8 flex flex-wrap gap-4">
+    <% if(files.length> 0) {
+      files.forEach(function(fileName) { %>
+      <!-- Single Task Card -->
+      <div class="task bg-gray-800 p-4 rounded shadow hover:shadow-lg transition">
+        <h3 class="text-lg font-semibold mb-2">
+          <%= fileName %>
+        </h3>
+        <div class="flex space-x-4">
+          <a href="/files/<%=fileName %>" class="text-blue-500 hover:underline">Read More</a>
+          <a href="/edit/<%=fileName %>" class="text-green-500 hover:underline">Edit</a>
+        </div>
+      </div>
+      <% }) } else { %>
+        <h3 class="mx-auto block text-zinc-600">No Task yet!</h3>
+        <% } %>
+  </div>
+
+
+
+</body>
+<script src="/javascripts/filename.js"></script>
+
+</html>
